@@ -4,16 +4,18 @@ const prompt = require('prompt-sync')();
 const wallet = require(`./wallet`)
 
 function verifyAccount(pin){
-    if(pin == pin)
+    if(pin == 8989)
     console.log(`Your account balance is \n ${balance}`)
 };
-function makeDeposit(numberOne,balance){
-    return numberOne + balance;
+function makeDeposit(depositAmount,balance){
+    let newBalance=  depositAmount + balance;
+    console.log(newBalance)
 }
 
 
-function makeWithdraw(numberOne,balance){
-    return numberOne - balance;
+function makeWithdraw(withdrawAmount,balance){
+    let newBalance =  withdrawAmount - balance;
+    console.log (newBalance)
 }
 
 
