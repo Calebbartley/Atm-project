@@ -1,27 +1,48 @@
 const account= require("./account");
 const prompt = require('prompt-sync')();
-
+const {pin} = require('./account')
+const {balance} = require('./account')
 const wallet = require(`./wallet`)
+const {enterPin}= require('./index')
+const index = require('./index')
 
-function verifyAccount(pin){
-    if(pin == 8989)
-    console.log(`Your account balance is \n ${balance}`)
+
+
+function verifyAccount(){
+    let enterPin=prompt('Enter your pin:')
+    if(enterPin === pin)
+    atmMenu()
 };
-function makeDeposit(depositAmount,balance){
-    let newBalance=  depositAmount + balance;
-    console.log(newBalance)
+
+
+
+
+function makeDeposit(userInput,balance){
+    console.log('How much would you like to deposit?');
+    let userInput= prompt();
+    let newBalance=  userInput + balance;
+    console.log(`Your new balance is, ${newBalance}`)
 }
+
+
 
 
 function makeWithdraw(withdrawAmount,balance){
+    console.log('How much would you like to withdraw? \n Minimum withdraw amount is $20.00 \n Please enter multiples of 5.');
+    let userInput= prompt();
+    let withdrawAmount = userInput
     let newBalance =  withdrawAmount - balance;
-    console.log (newBalance)
+    console.log (`Your new balance is, ${newBalance}`)
 }
 
 
 
 
-module.exports.verify = verifyAccount
 
-module.exports.deposit = makeDeposit
-module.exports.withdraw = makeWithdraw
+
+
+
+module.exports.verifyAccount = verifyAccount
+
+module.exports.makeDeposit = makeDeposit
+module.exports.makeWithdraw = makeWithdraw
