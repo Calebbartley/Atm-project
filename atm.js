@@ -10,8 +10,11 @@ const index = require('./index')
 
 function verifyAccount(){
     let enterPin=prompt('Enter your pin:')
-    if(enterPin === pin)
-    atmMenu()
+    if (enterPin == pin){
+        console.log('PIN Verified')
+        return enterPin;
+
+    }
 };
 
 
@@ -32,7 +35,7 @@ function makeWithdraw(withdrawAmount,balance){
     let userInput= prompt();
     let withdrawAmount = userInput
     let newBalance =  withdrawAmount - balance;
-    console.log (`Your new balance is, ${newBalance}`)
+    console.log (`Your new balance is, ${newBalance}.`)
 }
 
 
