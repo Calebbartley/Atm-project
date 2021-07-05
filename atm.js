@@ -2,12 +2,13 @@ const account= require("./account");
 const prompt = require('prompt-sync')();
 const {pin} = require('./account')
 const {balance} = require('./account')
-const wallet = require(`./wallet`)
+const availableCash = require(`./wallet`)
 const {enterPin}= require('./index')
 const index = require('./index')
+const wallet = require('./wallet')
 
 function getBalance(){
-    console.log(`Your current balance is, ${balance} `)
+    console.log(`Your current balance is, $${balance} `)
 }
 
 function verifyAccount(){
@@ -26,7 +27,7 @@ function makeDeposit(){
     console.log('How much would you like to deposit?');
     let userInput= prompt();
     let newBalance=  parseInt(userInput) + account.balance;
-    console.log(`Your new balance is, ${newBalance}`)
+    console.log(`Your new balance is, $${newBalance}`)
 }
 
 
@@ -37,13 +38,16 @@ function makeWithdraw(){
     let withdrawAmount = prompt();
     if(account.balance >= withdrawAmount){
     let newBalance = balance - withdrawAmount;
-
-    console.log (`Your new balance is, ${newBalance}.`)
+    console.log (`Your new balance is, $${newBalance}.`)
+    let walletBalance = (wallet.availableCash) + parseInt(withdrawAmount);
+    console.log (`$${walletBalance} has now been transferred to your wallet.`)
     }
     else if(account.balance < withdrawAmount){
         console.log("Not enough money.....")
     }
+    return withdrawAmount
 }
+
 
 
 
