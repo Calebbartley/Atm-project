@@ -1,1 +1,1 @@
-const index = require('./index')
+

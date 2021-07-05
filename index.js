@@ -1,46 +1,27 @@
 const prompt = require('prompt-sync')();
 const atm = require('./atm')
-const account = require('./account');
 const {verifyAccount} = require('./atm')
-const balance = require('./account')
+const balance = require('./atm')
 
 
 
 atm.verifyAccount()
 
 
-
-const atmMenu= prompt(`To check your account balance select option '1'.
-    To make a withdraw select option '2'.
-    To make a deposit select option '3'.
-     To exit please enter '4'.`);
-     switch(atmMenu){
+do{
+console.log(`To check your account balance select option '1'.\n To make a withdraw select option '2'.\n To make a deposit select option '3'.`);
+let atmMenu = prompt();
+    switch(atmMenu){
          case '1':
-             console.log(`Your current balance is, ${balance} `)
-             break;
-        case '2':
-            let cat = prompt(`How much would you like to withdraw? Minimum withdraw amount is $20.00. Please enter multiples of 5.`)
-            //let withdrawAmount = parseFloat(prompt)
-            let withdrawAmount = (parseInt(cat))
-            let newBalance =  parseInt(account.balance) - withdrawAmount ;
-                let withdResult= prompt(`Your new balance is, ${newBalance}. To make another Selection please press '1'`)
-                return newBalance
+             atm.balance();
+            break;
+             case '2':
+                atm.makeWithdraw();
             break;
         case '3':
-            let dog = prompt(`How much would you like to deposit? `)
-            let depositAmount = (parseInt(dog))
-            let updatedBalance = depositAmount + parseInt(account.balance);
-                console.log(updatedBalance)
+                atm.makeDeposit();
             break;
-        case '4':
-            return;
-
      }
-
-
-
-
-
-
-
-
+     userInput= prompt("Would you like to return to the menu? 'Y' or 'N'").toLowerCase();
+    }while(userInput != 'n')
+    console.log('Thank you for visiting!')

@@ -6,7 +6,9 @@ const wallet = require(`./wallet`)
 const {enterPin}= require('./index')
 const index = require('./index')
 
-
+function getBalance(){
+    console.log(`Your current balance is, ${balance} `)
+}
 
 function verifyAccount(){
     let enterPin=prompt('Enter your pin:')
@@ -20,24 +22,28 @@ function verifyAccount(){
 
 
 
-function makeDeposit(userInput,balance){
+function makeDeposit(){
     console.log('How much would you like to deposit?');
     let userInput= prompt();
-    let newBalance=  userInput + balance;
+    let newBalance=  parseInt(userInput) + account.balance;
     console.log(`Your new balance is, ${newBalance}`)
 }
 
 
 
 
-function makeWithdraw(withdrawAmount,balance){
-    console.log('How much would you like to withdraw? \n Minimum withdraw amount is $20.00 \n Please enter multiples of 5.');
-    let userInput= prompt();
-    let withdrawAmount = userInput
-    let newBalance =  withdrawAmount - balance;
-    console.log (`Your new balance is, ${newBalance}.`)
-}
+function makeWithdraw(){
+    console.log('please enter withdraw amount.')
+    let withdrawAmount = prompt();
+    if(account.balance >= withdrawAmount){
+    let newBalance = balance - withdrawAmount;
 
+    console.log (`Your new balance is, ${newBalance}.`)
+    }
+    else if(account.balance < withdrawAmount){
+        console.log("Not enough money.....")
+    }
+}
 
 
 
@@ -46,6 +52,6 @@ function makeWithdraw(withdrawAmount,balance){
 
 
 module.exports.verifyAccount = verifyAccount
-
+module.exports.balance = getBalance
 module.exports.makeDeposit = makeDeposit
 module.exports.makeWithdraw = makeWithdraw
